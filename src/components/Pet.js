@@ -1,15 +1,16 @@
 import React from 'react';
 
 class Pet extends React.Component {
-  constructor() {
-    super();
+  constructor(props){
+    super(props);
+    this.state = props.pet;
   }
 
   render() {
     return (
       <div className="card">
         <div className="content">
-          <a className="header">Pet name (gender: ♂ or ♀)</a>
+          <a className="header" onChange={this.petName}>Pet {this.state.name} (gender: ♂ or ♀)</a>
           <div className="meta">
             <span className="date">Pet type</span>
           </div>
@@ -19,8 +20,8 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <button className="ui primary button">Adopt pet</button>
-          <button className="ui disabled button">Already adopted</button>
+          {this.state.isAdopted && <button className="ui primary button">Adopt pet</button>}
+          {!this.state.isAdopted && <button className="ui disabled button">Already adopted</button>}
         </div>
       </div>
     );
